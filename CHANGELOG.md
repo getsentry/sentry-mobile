@@ -3,6 +3,7 @@
 * Check formatting in CI (#203)
 * Use Sentry Flutter 6.0.0-beta.1 (#200)
 * Bump Dependencies (#202)
+* Fix code generation (#204)
 
 # 1.0.2
 

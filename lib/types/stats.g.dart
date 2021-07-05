@@ -8,16 +8,12 @@ part of 'stats.dart';
 
 Stats _$StatsFromJson(Map<String, dynamic> json) {
   return Stats(
-    (json['24h'] as List?)
-        ?.map((e) => Stat.fromJson(e as List? ?? []))
-        .toList(),
-    (json['14d'] as List?)
-        ?.map((e) => Stat.fromJson(e as List? ?? []))
-        .toList(),
+    Stat.fromJsonList(json['24h'] as List<List<dynamic>>),
+    Stat.fromJsonList(json['14d'] as List<List<dynamic>>),
   );
 }
 
 Map<String, dynamic> _$StatsToJson(Stats instance) => <String, dynamic>{
-      '24h': instance.stats24h,
-      '14d': instance.stats14d,
+      '24h': Stat.toJsonList(instance.stats24h),
+      '14d': Stat.toJsonList(instance.stats14d),
     };
