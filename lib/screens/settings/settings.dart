@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:sentry_mobile/screens/html/html_screen.dart';
 import 'package:sentry_mobile/screens/license/license_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -23,6 +24,8 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  final InAppReview inAppReview = InAppReview.instance;
+
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, SettingsViewModel>(
@@ -143,6 +146,21 @@ class _SettingsState extends State<Settings> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: SettingsHeader('Application'),
               ),
+              ListTile(
+                  title: Text(
+                    'Rate Sentry Mobile',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1
+                        ?.apply(color: SentryColors.revolver),
+                  ),
+                  leading: Icon(
+                    Icons.star,
+                    color: SentryColors.lightningYellow,
+                  ),
+                  onTap: () {
+                    inAppReview.openStoreListing(appStoreId: 'id1546709967');
+                  }),
               SwitchListTile(
                 title: Text(
                   'Sentry SDK',
